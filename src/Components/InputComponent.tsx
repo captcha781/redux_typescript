@@ -19,6 +19,7 @@ useEffect(() => {
   setId(students.length +1)
 },[students])
 
+
   const dispatch = useAppDispatch()
   const handleSubmit:handleSubmit = (e) => {
     e.preventDefault()
@@ -39,10 +40,10 @@ useEffect(() => {
           <label>ID:</label><br /><input type={"number"} id={"id"} value={id} readOnly className="w-full rounded-sm bg-slate-200 focus:bg-gray-300 p-1.5" />
         </div>
         <div className=' my-2.5'>
-          <label>Name:</label><br /><input type={"text"} id={"name"} className="w-full rounded-sm bg-slate-200 focus:bg-gray-300 p-1.5" onChange={e => setName(e.target.value)} />
+          <label>Name:</label><br /><input type={"text"} id={"name"} className="w-full rounded-sm bg-slate-200 focus:bg-gray-300 p-1.5" defaultValue={name} onChange={e => setName(e.target.value)} />
         </div>
         <div className=' my-2.5'>
-          <label>Department</label><br /><input type={"text"} id={"dept"} className="w-full rounded-sm bg-slate-200 focus:bg-gray-300 p-1.5" onChange={e => setDepartment(e.target.value)} />
+          <label>Department</label><br /><input type={"text"} id={"dept"} className="w-full rounded-sm bg-slate-200 focus:bg-gray-300 p-1.5" defaultValue={department} onChange={e => setDepartment(e.target.value)} />
         </div>
         <div className=' my-2.5'>
           <button className='rounded-md bg-teal-500 active:bg-teal-600 text-white px-3 py-1 relative left-full -translate-x-full mt-2'>Add Student</button>
