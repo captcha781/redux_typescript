@@ -2,7 +2,7 @@ import React from 'react'
 import { useAppState } from '../hooks'
 import Card from './Card'
 
-const Cards = () => {
+const Cards : React.FC = () => {
 
     const studentsData = useAppState((state) => state.student.students)
     return (

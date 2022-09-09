@@ -2,13 +2,14 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import { useAppState, useAppDispatch } from '../hooks'
 import {createStudent} from "../Features/Student"
 import {message} from "antd"
+import axios from 'axios'
 interface handleSubmit {
   (e:FormEvent) : void
 }
 
 
 
-const InputComponent = () => {
+const InputComponent: React.FC = () => {
 
   const students = useAppState(state => state.student.students)
   const [name, setName] = useState<string>("")
@@ -23,10 +24,17 @@ useEffect(() => {
   const dispatch = useAppDispatch()
   const handleSubmit:handleSubmit = (e) => {
     e.preventDefault()
-    message.loading("Loading Request",1)
+    message.loading("Loading Request",2)
     setTimeout(():void => {
-      dispatch(createStudent({id,name,department}))
-      message.success("Student has been successfully added!")
+      axios.post("https://62d00f4a1cc14f8c08837daf.mockapi.io/api/redux/students", {id,name,department})
+      .then((response) => {
+        dispatch(createStudent({id,name,department}))
+        message.success("Student has been successfully added!")
+      })
+      .catch(err => {
+        message.error("Error in Student Creation")
+      })
+      
     },2000)
   }
 

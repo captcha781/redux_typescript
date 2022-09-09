@@ -2,16 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 const initialState:StudentsList = {
     students: [
-        {
-            id: 1,
-            name: "Student 1",
-            department: "IT"
-        },
-        {
-            id: 2,
-            name: "Student 2",
-            department: "ECE"
-        }
+        
     ]
 }
 
@@ -27,10 +18,13 @@ export const studentSlice = createSlice({
             state.students = partial.map((item, index) => {
                 return {...item, id: index+1}
             })
+        },
+        initialize : (state: any, action:PayloadAction<StudentsList>) => {
+            state.students = action.payload
         }
     }
 })
 
-export const { createStudent, deleteStudent } = studentSlice.actions
+export const { createStudent, deleteStudent, initialize } = studentSlice.actions
 
 export default studentSlice.reducer
